@@ -12,7 +12,7 @@ body {
 	width: 100vw;
 	font-size		: 150%;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;;
-	color: rgb(124, 124, 124);
+	color: rgb(255, 255, 255);
 	line-height		: 130%;
 	position: fixed;
 	padding: 10px 10px 10px 10px;
@@ -23,11 +23,12 @@ body {
 .fullbox{
 	font-size: 120%;
 	width: 100%;
-	color: rgb(99, 99, 99);
+	color: rgb(255, 255, 255);
 	font-family: "Yu Gothic", sans-serif;
 	height: auto;
 	position: fixed;
-	background-color: rgb(255, 187, 110);
+/*	background-color: rgb(255, 187, 110);*/
+	background: linear-gradient(rgb(255, 162, 0),rgb(227, 103, 1));
 	margin: 0px 0px 0px 0px;
 	padding: 15px 10px 15px 20px;
 }
@@ -35,7 +36,7 @@ body {
 .mytitle{
 	font-family: "Yu Gothic", sans-serif;
 	font-size: 120%;
-	color: rgb(124, 124, 124);
+	color: rgb(255, 255, 255);
 	text-align: left;
 
 }
@@ -47,15 +48,15 @@ body {
 .menu_item{
 	font-family: "Yu Gothic", sans-serif;
 	font-size: 80%;
-	color: rgb(124, 124, 124);
+	color: rgb(255, 255, 255);
 	text-align: center;
 	border: solid 1px;
-	border-color: rgb(124, 124, 124);
+	border-color: rgb(255, 255, 255);
 }
 
 .header_table{
 	width: 100%;
-	color: rgb(124, 124, 124);
+	color: rgb(255, 255, 255);
 }
 
 .section_01{
@@ -149,7 +150,7 @@ td{
 
 
 A:link.headerLink, A:visited.headerLink{
-	color: rgb(124, 124, 124);
+	color: rgb(255, 255, 255);
     text-decoration : none;
 }
 

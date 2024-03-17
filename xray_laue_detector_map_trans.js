@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 //JavaScript code for simulation of X-ray Laue backscattering
 
-const version = "1.1";
+const version = "1.0";
 
 // dimensions of the canvas object
 let scaleX=500;
@@ -53,7 +53,8 @@ let Hmax;
 let Kmax;
 let Lmax;
 
-let lambda_min=0.4;
+let lambda_min=0.1;
+let lambda_max=0.2;
 
 let lambda;             // wavelength 
 
@@ -94,7 +95,7 @@ window.addEventListener('load', () => {
         draw();
     });
 
-    document.getElementById('lambda_min').addEventListener('input', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
+    document.getElementById('set_lambda_button').addEventListener('click', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
         lambda_adjust_and_draw();
     });
 
@@ -178,8 +179,9 @@ function rot_and_draw(rot_ax_dir) {
 }
 
 function lambda_adjust_and_draw(){
-    document.getElementById("lambda_min_disp").value = document.getElementById("lambda_min").value;
+//    document.getElementById("lambda_min_disp").value = document.getElementById("lambda_min").value;
     lambda_min = Number(document.getElementById("lambda_min").value);
+    lambda_max = Number(document.getElementById("lambda_max").value);
     draw_DetMap();
 }
 
@@ -354,7 +356,9 @@ function draw_DetMap(){
     context.lineWidth= ref_linewidth;
     context.font = "10px sans-serif";
 
-    let Qmax = 4.0*Math.PI/lambda_min;
+    const tthmax = Math.atan(DetHeight/2.0*Math.sqrt(2.0)/Lsd);  // The shape of the detector surface is assumed to be square. The largest 2th is given at the coner of the square.
+
+    let Qmax = 2.0*(2.0*Math.PI/lambda_min)*Math.sin(tthmax/2.0);
     Hmax = Math.floor(Qmax/as_len);
     Kmax = Math.floor(Qmax/bs_len);
     Lmax = Math.floor(Qmax/cs_len);
@@ -415,7 +419,7 @@ function drawBraggReflection(context1,H1,K1,L1,isTargetHKL1,showHKL1){
         let ki = -0.5*G_sq/Ghkl[0]; // Ki >0
         lambda = 2.0*Math.PI/ki;    // Angstrome
 
-        if(lambda>lambda_min && G_sq > 0){   // lambda_min=2PI/sqrt(Ei_max/2.072), the case that H=K=L=0 is avoided by the condition of  G_sq > 0.
+        if(lambda>lambda_min && lambda<lambda_max && G_sq > 0){   // lambda_min=2PI/sqrt(Ei_max/2.072), the case that H=K=L=0 is avoided by the condition of  G_sq > 0.
             let kf=new Array(3);
             kf[0]=Ghkl[0]+ki;
             kf[1]=Ghkl[1];
@@ -525,10 +529,10 @@ function draw_OriViewer(){
     const scene = new THREE.Scene();
   
     // カメラを作成
-    const camera = new THREE.PerspectiveCamera(30, width / height);
+    const camera = new THREE.PerspectiveCamera(30, width / height, 1,5000);
     let cam_theta=Number(document.getElementById("cam_theta").value);
     let cam_phi=Number(document.getElementById("cam_phi").value);
-    let cam_len=1200;
+    let cam_len=2000;
     camera.position.set(cam_len*Math.sin(Math.PI/180.0*cam_theta)*Math.sin(Math.PI/180.0*cam_phi), cam_len*Math.cos(Math.PI/180.0*cam_theta), cam_len*Math.sin(Math.PI/180.0*cam_theta)*Math.cos(Math.PI/180.0*cam_phi));
     camera.lookAt(new THREE.Vector3(0, 0, 0));
   
@@ -537,7 +541,7 @@ function draw_OriViewer(){
     let geometry_det = new THREE.BoxGeometry(DetBankThickness,DetHeight*scale3D,DetHeight/scaleY*scaleX*scale3D);
     let mesh_det = new THREE.Mesh(geometry_det, material1);
     scene.add(mesh_det);
-    mesh_det.position.x -= Lsd*scale3D;
+    mesh_det.position.x += Lsd*scale3D;
 
     // guide for the incident beam
     const geometry_guide = new THREE.BoxGeometry(1000,50,50);

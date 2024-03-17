@@ -1,7 +1,7 @@
 <html>
 <head>
 <title >X-ray Laue Diffraction Simulator (Transmission)</title>
-<link rel="stylesheet" type="text/css" href="./common.css">
+<link rel="stylesheet" type="text/css" href="./common.css?202403151">
 <script async src="https://unpkg.com/es-module-shims@1.5.8/dist/es-module-shims.js"></script>
 <script type="importmap">
     {
@@ -10,7 +10,7 @@
       }
     }
   </script>
-<script type="module" src="./xray_laue_detector_map_trans.js?202402253"></script>
+<script type="module" src="./xray_laue_detector_map_trans.js?20240317"></script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -100,13 +100,19 @@
                         <b><i>&lambda;</i> <sub>min</sub></b><br />
                     </td>
                     <td>
-                        <input type="range" value="0.7" min="0.1" max="1" step="0.01" id="lambda_min" >
+                        <input size="5" value="0.1" id="lambda_min"> &Aring;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><i>&lambda;</i> <sub>max</sub></b><br />
                     </td>
                     <td>
-                        <input size="5" value="0.45" id="lambda_min_disp"> &Aring;
+                        <input size="5" value="0.2" id="lambda_max"> &Aring;
                     </td>
                 </tr>
             </table>
+            <input type="button" value="   Set lambda range  " id="set_lambda_button"/><br />
             <br />
 
 
@@ -139,8 +145,8 @@
                     </td>
                     <td valign="top"> 
                         <b>Detector params</b> (<a href="https://sites.google.com/view/t-nakajima-group/tools/xray_laue_simulator#h.aqdg0r3yuaac" target="_blank">definitions</a>)<br>
-                        Sample-detector distance <input size="5" id="Lsd" value="40"> mm.<br />
-                        Vertical length of the detection area <input size="5" id="DetHeight" value="80"> mm.<br />
+                        Sample-detector distance <input size="5" id="Lsd" value="130"> mm.<br />
+                        Vertical length of the detection area <input size="5" id="DetHeight" value="100"> mm.<br />
                         Offset of the center position (<input size="5" id="X0_ofst" value="0">,<input size="5" id="Y0_ofst" value="0">) pixels.<br />
                         <input type="button" value="Set" id="set_origin_button"><br />
                     </td>
