@@ -18,8 +18,8 @@ let Y0_ofst=0;
 const radius=5;       // radius of circles showing refletions in the simulation.
 const radius_tgt=8;     //// radius of a circle showing a target refletions in the simulation.
 const txt_ofst1=radius+10;   //offset along Y direction for indices shown near each reflection.
-const fundamental_color="rgb(0, 0, 250)";
-const DetMapBGColor="rgb(220, 220, 220)";
+let fundamental_color="rgb(250, 250, 250)";
+const DetMapBGColor="rgb(40, 40, 40)";
 const gridcolor="rgb(250, 100, 0)"
 const ref_linewidth=1;
 
@@ -85,6 +85,10 @@ window.addEventListener('load', () => {
 
     document.getElementById('RefCon').addEventListener('change', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
         set_RefCon_and_draw();
+    });
+
+    document.getElementById('SpotColor').addEventListener('change', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
+        set_SpotColor_and_draw();
     });
 
     document.getElementById('set_orientation_button').addEventListener('click', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
@@ -169,6 +173,27 @@ function draw() {
 
 function set_RefCon_and_draw(){
     set_ReflectionCondition();
+    draw_DetMap();
+}
+
+function set_SpotColor_and_draw(){
+    switch(document.getElementById('SpotColor').value){
+        case 'white':
+            fundamental_color="rgb(250, 250, 250)";;
+            break;
+        case 'green':
+            fundamental_color="rgb(150, 250, 150)";;
+            break;
+        case 'cyan':
+            fundamental_color="rgb(100, 200, 250)";;
+            break;
+        case 'yellow':
+            fundamental_color="rgb(250, 250, 150)";;
+            break;
+        default:
+            fundamental_color="rgb(250, 250, 250)";;
+    }
+    
     draw_DetMap();
 }
 
