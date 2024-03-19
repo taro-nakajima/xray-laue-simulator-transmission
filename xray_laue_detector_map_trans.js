@@ -96,7 +96,7 @@ window.addEventListener('load', () => {
     });
 
     document.getElementById('set_target_ref_button').addEventListener('click', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
-        draw();
+        draw_DetMap();
     });
 
     document.getElementById('set_lambda_button').addEventListener('click', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
