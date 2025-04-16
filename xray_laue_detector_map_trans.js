@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 //JavaScript code for simulation of X-ray Laue backscattering
 
-const version = "1.0";
+const version = "1.1";
 
 // dimensions of the canvas object
 let scaleX=500;
@@ -55,6 +55,8 @@ let Lmax;
 
 let lambda_min=0.1;
 let lambda_max=0.2;
+
+let Qmax = 2.0*(2.0*Math.PI/lambda_min);
 
 let lambda;             // wavelength 
 
@@ -207,6 +209,7 @@ function lambda_adjust_and_draw(){
 //    document.getElementById("lambda_min_disp").value = document.getElementById("lambda_min").value;
     lambda_min = Number(document.getElementById("lambda_min").value);
     lambda_max = Number(document.getElementById("lambda_max").value);
+    Qmax = Number(document.getElementById("Q_max").value);
     draw_DetMap();
 }
 
@@ -381,12 +384,9 @@ function draw_DetMap(){
     context.lineWidth= ref_linewidth;
     context.font = "10px sans-serif";
 
-    const tthmax = Math.atan(DetHeight/2.0*Math.sqrt(2.0)/Lsd);  // The shape of the detector surface is assumed to be square. The largest 2th is given at the coner of the square.
-
-    let Qmax = 2.0*(2.0*Math.PI/lambda_min)*Math.sin(tthmax/2.0);
-    Hmax = Math.floor(Qmax/as_len);
-    Kmax = Math.floor(Qmax/bs_len);
-    Lmax = Math.floor(Qmax/cs_len);
+    Hmax = Math.floor(Qmax/as_len*2.0);
+    Kmax = Math.floor(Qmax/bs_len*2.0);
+    Lmax = Math.floor(Qmax/cs_len*2.0);
 
     let Ghkl=new Array(3);
     let isTargetHKL=false;
@@ -444,7 +444,7 @@ function drawBraggReflection(context1,H1,K1,L1,isTargetHKL1,showHKL1){
         let ki = -0.5*G_sq/Ghkl[0]; // Ki >0
         lambda = 2.0*Math.PI/ki;    // Angstrome
 
-        if(lambda>lambda_min && lambda<lambda_max && G_sq > 0){   // lambda_min=2PI/sqrt(Ei_max/2.072), the case that H=K=L=0 is avoided by the condition of  G_sq > 0.
+        if(lambda>lambda_min && lambda<lambda_max && G_sq > 0 && G_sq < Qmax**2.0){   // lambda_min=2PI/sqrt(Ei_max/2.072), the case that H=K=L=0 is avoided by the condition of  G_sq > 0.
             let kf=new Array(3);
             kf[0]=Ghkl[0]+ki;
             kf[1]=Ghkl[1];

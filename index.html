@@ -21,7 +21,7 @@
       }
     }
   </script>
-<script type="module" src="./xray_laue_detector_map_trans.js?20240319"></script>
+<script type="module" src="./xray_laue_detector_map_trans.js?20250416"></script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -105,11 +105,11 @@
 
 
 
-            <div class="section_02">Incident X-ray Beam </div>
+            <div class="section_02">X-ray wavelength and Q-range </div>
             <table>
                 <tr>
                     <td>
-                        <b><i>&lambda;</i> <sub>min</sub></b><br />
+                        <b><i>&lambda;</i><sub>min</sub></b><br />
                     </td>
                     <td>
                         <input size="5" value="0.1" id="lambda_min"> &Aring;
@@ -121,6 +121,14 @@
                     </td>
                     <td>
                         <input size="5" value="0.2" id="lambda_max"> &Aring;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b><i>Q</i><sub>max</sub></b><br />
+                    </td>
+                    <td>
+                        <input size="5" value="15" id="Q_max"> &Aring;
                     </td>
                 </tr>
             </table>
@@ -147,9 +155,9 @@
                 <tr>
                     <td valign="top">
                         <b>Sample rotation</b><br />
-                        <input size="5" id="rot_x_deg" value="1"> deg. <input type="button" value="  rotate x+  " id="rot_x_plus"  /><input type="button" value="  rotate x-  " id="rot_x_minus"  /><br />
-                        <input size="5" id="rot_y_deg" value="1"> deg. <input type="button" value="  rotate y+  " id="rot_y_plus"  /><input type="button" value="  rotate y-  " id="rot_y_minus"  /><br />
-                        <input size="5" id="rot_z_deg" value="1"> deg. <input type="button" value="  rotate z+  " id="rot_z_plus"  /><input type="button" value="  rotate z-  " id="rot_z_minus"  /><br />
+                        <input size="5" id="rot_x_deg" value="0.2"> deg. <input type="button" value="  rotate x+  " id="rot_x_plus"  /><input type="button" value="  rotate x-  " id="rot_x_minus"  /><br />
+                        <input size="5" id="rot_y_deg" value="0.2"> deg. <input type="button" value="  rotate y+  " id="rot_y_plus"  /><input type="button" value="  rotate y-  " id="rot_y_minus"  /><br />
+                        <input size="5" id="rot_z_deg" value="0.2"> deg. <input type="button" value="  rotate z+  " id="rot_z_plus"  /><input type="button" value="  rotate z-  " id="rot_z_minus"  /><br />
                         <br />           
                     </td>
                     <td width="20"> 
@@ -157,7 +165,7 @@
                     </td>
                     <td valign="top"> 
                         <b>Detector params</b> (<a href="https://sites.google.com/view/t-nakajima-group/tools/xray_laue_simulator#h.aqdg0r3yuaac" target="_blank">definitions</a>)<br>
-                        Sample-detector distance <input size="5" id="Lsd" value="130"> mm.<br />
+                        Sample-detector distance <input size="5" id="Lsd" value="140"> mm.<br />
                         Vertical length of the detection area <input size="5" id="DetHeight" value="100"> mm.<br />
                         Offset of the center position (<input size="5" id="X0_ofst" value="0">,<input size="5" id="Y0_ofst" value="0">) pixels.<br />
                         <input type="button" value="Set" id="set_origin_button"><br />
