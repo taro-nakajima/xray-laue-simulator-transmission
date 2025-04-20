@@ -323,3 +323,9 @@ input[type="radio"].rotTypeButton{
 	border-top-right-radius:10px;
 	border-bottom-right-radius:10px;
 }
+
+.valign_top{
+	vertical-align: top;
+	border-width     : 1px 1px 1px 0px;
+	border-color     : #000;
+}

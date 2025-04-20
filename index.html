@@ -12,7 +12,7 @@
 </script>    
 
 <title >X-ray Laue Diffraction Simulator (Transmission)</title>
-<link rel="stylesheet" type="text/css" href="./common.css?202403191">
+<link rel="stylesheet" type="text/css" href="./common.css?20250420">
 <script async src="https://unpkg.com/es-module-shims@1.5.8/dist/es-module-shims.js"></script>
 <script type="importmap">
     {
@@ -21,7 +21,7 @@
       }
     }
   </script>
-<script type="module" src="./xray_laue_detector_map_trans.js?20250416"></script>
+<script type="module" src="./xray_laue_detector_map_trans.js?20250420"></script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -132,7 +132,7 @@
                     </td>
                 </tr>
             </table>
-            <input type="button" value="   Set lambda range  " id="set_lambda_button"/><br />
+            <input type="button" value="   Set lambda and Q range  " id="set_lambda_button"/><br />
             <br />
 
 
@@ -190,15 +190,23 @@
     <tr>
         <td>
             <div class="section_02">Detector map </div>
-            Spot color
-            <select id="SpotColor">
-                <option value="white" selected>white</option>
-                <option value="green">green</option>
-                <option value="cyan">cyan</option>
-                <option value="yellow">yellow</option>
-            </select><br />
-
-            <canvas id="CanvasDetMap" class="box"></canvas><br />
+            <table>
+                <tr>
+                    <td>
+                        <canvas id="CanvasDetMap" class="box"></canvas><br />
+                    </td>
+                    <td class="valign_top">
+                        Spot color
+                        <select id="SpotColor">
+                            <option value="white" selected>white</option>
+                            <option value="green">green</option>
+                            <option value="cyan">cyan</option>
+                            <option value="yellow">yellow</option>
+                        </select><br />
+                        Size of the center circle : <input type="number" value="15" id="centerCircleSize" size="5">
+                    </td>
+                </tr>
+            </table>
             <a download="DetMap_fit.png" href="#" id="DetMap_download">Download the detector map with simulations as a png file.</a><br />
             <br />
             <div class="section_02">Sample orientation viewer</div>

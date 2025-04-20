@@ -93,6 +93,10 @@ window.addEventListener('load', () => {
         set_SpotColor_and_draw();
     });
 
+    document.getElementById('centerCircleSize').addEventListener('change', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
+        draw_DetMap();
+    });
+
     document.getElementById('set_orientation_button').addEventListener('click', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
         draw();
     });
@@ -366,6 +370,7 @@ function draw_DetMap(){
         context.drawImage(image, 0, 0);
     }
 
+    //draw vertical and horizontal lines
     context.strokeStyle = gridcolor;
     context.beginPath();
     context.moveTo(0,Y0+Y0_ofst);
@@ -377,6 +382,15 @@ function draw_DetMap(){
     context.moveTo(X0+X0_ofst,0);
     context.lineTo(X0+X0_ofst,scaleY);
     context.stroke();
+
+    //draw a circle corresponding to the direct beam.
+    context.strokeStyle = gridcolor;
+    context.beginPath();
+    const centerCircleSize=Number(document.getElementById("centerCircleSize").value);
+    context.arc(X0+X0_ofst,Y0+Y0_ofst,centerCircleSize, 0, 2 * Math.PI);
+    context.stroke();
+
+
 
     // color setting for circles indicating reflections
     context.strokeStyle = fundamental_color;
