@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 //JavaScript code for simulation of X-ray Laue backscattering
 
-const version = "1.1";
+const version = "1.2";
 
 // dimensions of the canvas object
 let scaleX=500;
