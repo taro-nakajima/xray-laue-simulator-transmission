@@ -86,7 +86,8 @@ window.addEventListener('load', () => {
     });
 
     document.getElementById('RefCon').addEventListener('change', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
-        set_RefCon_and_draw();
+//        set_RefCon_and_draw();
+        draw();
     });
 
     document.getElementById('SpotColor').addEventListener('change', (evt) => {    // button to execute the calculation of the list of nuclear structure factors
